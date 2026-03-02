@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Web in 2026 - MWC Talent Arena Workshop">
+  <title>Todo en Web | The Web in 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.20/codemirror.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.20/theme/material-darker.min.css">
+  <link rel="stylesheet" href="src/styles/main.css">
+  <link rel="manifest" href="manifest.json">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(registrations => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script>
+
+
+  <!-- Import maps for Three.js - no build tools needed -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://esm.sh/three@0.170.0",
+        "three/addons/": "https://esm.sh/three@0.170.0/examples/jsm/"
+      }
+    }
+  </script>
+
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.20/codemirror.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.20/mode/xml/xml.min.js"></script>
+  <script defer
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.20/mode/javascript/javascript.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.20/mode/css/css.min.js"></script>
+  <script defer
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.20/mode/htmlmixed/htmlmixed.min.js"></script>
+</head>
+
+<body>
+  <!-- Start Screen - 90s Retro Web Style -->
+  <div id="start-screen" class="screen active">
+    <div class="retro-page">
+      <!-- Retro header with animated text -->
+      <div class="retro-header">
+        <marquee behavior="scroll" direction="left" scrollamount="3">
+          ★☆★ Welcome to my AWESOME Web Page!!! ★☆★ You are visitor number <span class="visitor-count">000,428</span>
+          ★☆★ Last updated: January 15, 1999 ★☆★
+        </marquee>
+      </div>
+
+      <!-- Under construction banner -->
+      <div class="construction-banner">
+        <span class="blink">🚧</span>
+        <span>UNDER CONSTRUCTION</span>
+        <span class="blink">🚧</span>
+      </div>
+
+      <!-- Main content table (90s layout!) -->
+      <table class="retro-table" border="1" cellpadding="10" cellspacing="0">
+        <tr>
+          <td class="sidebar" valign="top">
+            <p><b>Navigation:</b></p>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About Me</a></li>
+              <li><a href="#">My Links</a></li>
+              <li><a href="#">Guestbook</a></li>
+              <li><a href="mailto:webmaster@geocities.com">Email Me!</a></li>
+            </ul>
+            <hr>
+            <p><b>Cool Sites:</b></p>
+            <ul>
+              <li><a href="#">Google</a> <span style="color:red;font-size:10px">NEW!</span></li>
+              <li><a href="#">AltaVista</a></li>
+              <li><a href="#">Netscape</a></li>
+              <li><a href="#">Yahoo!</a></li>
+            </ul>
+            <hr>
+            <center>
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                alt="Best viewed with Netscape" class="retro-badge">
+              <p class="small-text">Best viewed in<br><b>Netscape Navigator 4.0</b><br>800x600</p>
+            </center>
+          </td>
+          <td class="main-content" valign="top">
+            <center>
+              <h1 class="retro-title">
+                <span class="rainbow">W</span><span class="rainbow">e</span><span class="rainbow">l</span><span
+                  class="rainbow">c</span><span class="rainbow">o</span><span class="rainbow">m</span><span
+                  class="rainbow">e</span>
+                to My State of the Art Web Workshop!!!
+              </h1>
+
+              <hr width="80%" size="3" color="#000080">
+
+              <p class="intro-text">
+                Hello and <b>WELCOME</b> to my corner of the <u>World Wide Web</u>!!!
+                This page is dedicated to all things <font color="blue">INTERNET</font>.
+                The web is the <blink>FUTURE</blink>!!!
+              </p>
+
+              <br>
+
+              <div class="hit-counter">
+                <span>You are visitor #</span>
+                <span class="counter-display">
+                  <span class="digit">0</span>
+                  <span class="digit">0</span>
+                  <span class="digit">0</span>
+                  <span class="digit">4</span>
+                  <span class="digit">2</span>
+                  <span class="digit">8</span>
+                </span>
+              </div>
+
+              <br><br>
+
+              <p class="warning-text blink">
+                ⚠️ WARNING: This website is VERY outdated! ⚠️
+              </p>
+
+              <br>
+
+              <button id="start-btn" class="retro-button">
+                <span>⬆️ UPDATE TO 2026 ⬆️</span>
+              </button>
+
+              <br><br>
+
+              <p class="small-text">Click above to see what the web looks like in 2026!</p>
+
+              <hr width="80%" size="3" color="#000080">
+
+              <div class="retro-footer">
+                <p>
+                  <a href="#">Sign my Guestbook!</a> |
+                  <a href="#">View Guestbook</a> |
+                  <a href="#">Webrings</a>
+                </p>
+                <p class="small-text">
+                  © 1999 VictorSanchez Webmaster. All rights reserved.<br>
+                  Made with ❤️ and &lt;table&gt; tags
+                </p>
+                <p class="small-text">
+                  <i>"The Internet is just a fad" - Someone, probably</i>
+                </p>
+              </div>
+            </center>
+          </td>
+        </tr>
+      </table>
+
+      <!-- Animated stars background -->
+      <div class="stars-bg"></div>
+    </div>
+  </div>
+
+  <!-- Transition Screen - The Evolution -->
+  <div id="transition-screen" class="screen">
+    <div class="transition-overlay"></div>
+    <div class="code-rain" id="code-rain"></div>
+    <div class="transition-text">
+      <div class="upgrade-text">UPGRADING TO WEB 2026...</div>
+      <div class="loading-bar">
+        <div class="loading-progress"></div>
+      </div>
+      <div class="tech-list" id="tech-list"></div>
+    </div>
+  </div>
+
+  <!-- Win95 Desktop Visualizer (first verses) -->
+  <div id="win95-screen" class="screen">
+    <div id="win95-container"></div>
+  </div>
+
+  <!-- Modern WebGL Visualizer (chorus onwards) -->
+  <div id="visualizer-screen" class="screen">
+    <canvas id="visualizer-canvas"></canvas>
+  </div>
+
+  <!-- Lyrics containers at body level for proper z-index stacking -->
+  <div id="lyrics-container-win95" class="lyrics-overlay">
+    <p id="lyrics-text-win95" class="lyrics-text"></p>
+  </div>
+  <div id="lyrics-container-webgl" class="lyrics-overlay">
+    <p id="lyrics-text" class="lyrics-text"></p>
+  </div>
+
+  <!-- Shared audio elements -->
+  <audio id="audio" src="todoenweb.mp3" preload="auto"></audio>
+  <audio id="dialup-audio" src="dialup.mp3" preload="auto"></audio>
+
+  <!-- Slides Screen -->
+  <div id="slides-screen" class="screen">
+    <div id="slides-container">
+      <!-- Slides will be rendered here -->
+    </div>
+    <div id="slide-progress"></div>
+    <div id="slide-controls">
+      <span id="slide-counter"></span>
+    </div>
+  </div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+
+</html>
