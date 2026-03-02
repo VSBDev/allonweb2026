@@ -540,14 +540,14 @@ function getSupportedType() {
 function startRecording() {
   // 1. Get a stream from the canvas: fxCanvas.captureStream(30)
   // 2. If available, merge one audio track from the camera stream
-  // 3. Create `recorder = new MediaRecorder(canvasStream, { mimeType: recordingMimeType })`
+  // 3. Create recorder = new MediaRecorder(canvasStream, { mimeType: recordingMimeType })
   // 4. Push chunk data into 'chunks' using recorder.ondataavailable
   // TODO: Start MediaRecorder
 }
 
 function stopRecording() {
   // 1. Call recorder.stop() when state is "recording"
-  // 2. In recorder.onstop, build `new Blob(chunks, { type: recordingMimeType })`
+  // 2. In recorder.onstop, build new Blob(chunks, { type: recordingMimeType })
   // 3. Call addAssetToGallery(blob, 'video')
   // TODO: Finish recording and finalize the video file
 }
