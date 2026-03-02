@@ -416,19 +416,19 @@ document.getElementById('worker').onclick = runWorker;`
     {
       title: 'UI Blocking',
       lang: 'js',
-      startLine: 390,
+      startLine: 9,
       instruction: 'Call `cpuStress()` in a loop. Use `setTimeout(step, 0)` to allow the progress bar to paint (badly).'
     },
     {
       title: 'Worker Setup',
       lang: 'js',
-      startLine: 395,
+      startLine: 17,
       instruction: '1. Create a Blob of JS code. 2. `new Worker(URL.createObjectURL(blob))`. 3. `worker.postMessage()` to start.'
     },
     {
       title: 'Worker Listen',
       lang: 'js',
-      startLine: 395,
+      startLine: 17,
       instruction: 'Inside the Worker, use `self.onmessage` and `self.postMessage(progress)` to send data back.'
     }
   ]

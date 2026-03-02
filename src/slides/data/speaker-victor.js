@@ -5,7 +5,7 @@ export default {
   title: 'Víctor Sánchez',
   subtitle: 'Google Developer Expert · Web Technologies',
   role: 'Proyecto Fugu Expert',
-  photo: '/src/assets/victor-avatar.png',
+  photo: 'src/assets/victor-avatar.png',
   bio: 'Specializing in the "Fugu" mission: expanding the capabilities of the browser until it rivals the native desktop experience.',
   tags: [
     'Google Developer Expert',

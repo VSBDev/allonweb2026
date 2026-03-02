@@ -450,7 +450,7 @@ function handleUp(note) {
 
 async function exportSession() {
   if (sequence.length === 0) return logger('Nothing to record!');
-  // 1. Open the OS "Save" picker (suggest 'vortex-session.json')
+  // 1. Open the OS "Save" picker (suggest 'performance.vortex')
   // 2. Obtain a writable stream from the file handle
   // 3. Stringify the 'sequence' array and write it to the stream
   // 4. IMPORTANT: Close the stream to commit changes to disk
@@ -458,7 +458,7 @@ async function exportSession() {
 }
 
 async function importSession() {
-  // 1. Open the OS "Open" picker (filter for .json or .vortex)
+  // 1. Open the OS "Open" picker (filter for .vortex)
   // 2. Get the File object from the handle
   // 3. Read the file content as text
   // 4. Parse JSON and update the local 'sequence' variable
@@ -509,13 +509,13 @@ for (let i=0; i<24; i++) {
     {
       title: 'Writing to Disk',
       lang: 'js',
-      startLine: 3,
+      startLine: 59,
       instruction: '1. `await showSaveFilePicker()` to get a handle. 2. `await handle.createWritable()`. 3. `await writer.write(blob)`. 4. `await writer.close()`.'
     },
     {
       title: 'Reading from Disk',
       lang: 'js',
-      startLine: 7,
+      startLine: 67,
       instruction: '1. `const [handle] = await showOpenFilePicker()`. 2. `const file = await handle.getFile()`. 3. `const text = await file.text()`.'
     }
   ]

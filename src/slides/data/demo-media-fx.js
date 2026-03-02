@@ -489,10 +489,13 @@ const stopRecBtn = document.getElementById('stopRec');
 const fxCanvas = document.getElementById('fx');
 const ctx = fxCanvas.getContext('2d');
 const video = document.createElement('video');
+let stream = null;
+let recorder = null;
 let chunks = [];
+let recordingMimeType = 'video/webm';
 
 async function init() {
-  const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+  stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
   video.srcObject = stream;
   video.play();
   draw();
@@ -529,15 +532,23 @@ function snapPhoto() {
   // TODO: Implement the toBlob() callback
 }
 
+function getSupportedType() {
+  const types = ['video/webm;codecs=vp9', 'video/webm', 'video/mp4'];
+  return types.find(type => MediaRecorder.isTypeSupported(type)) || '';
+}
+
 function startRecording() {
   // 1. Get a stream from the canvas: fxCanvas.captureStream(30)
-  // 2. Push data to 'chunks' array
+  // 2. If available, merge one audio track from the camera stream
+  // 3. Create `recorder = new MediaRecorder(canvasStream, { mimeType: recordingMimeType })`
+  // 4. Push chunk data into 'chunks' using recorder.ondataavailable
   // TODO: Start MediaRecorder
 }
 
 function stopRecording() {
-  // 1. Stop the recorder engine
-  // 2. On stop, create a final Blob from chunks and call addAssetToGallery
+  // 1. Call recorder.stop() when state is "recording"
+  // 2. In recorder.onstop, build `new Blob(chunks, { type: recordingMimeType })`
+  // 3. Call addAssetToGallery(blob, 'video')
   // TODO: Finish recording and finalize the video file
 }
 
@@ -550,20 +561,20 @@ init();`
     {
       title: 'Snapshot Pipeline',
       lang: 'js',
-      startLine: 276,
+      startLine: 45,
       instruction: 'Use `canvas.toBlob(callback)` to capture current frame. Send the blob to `addAssetToGallery`.'
     },
     {
       title: 'Stream Creation',
       lang: 'js',
-      startLine: 289,
+      startLine: 58,
       instruction: 'Combine canvas with audio: `canvas.captureStream(30)` then `stream.addTrack(audioTrack)`.'
     },
     {
       title: 'Media Recording',
       lang: 'js',
-      startLine: 295,
-      instruction: 'Initialize `new MediaRecorder(stream)`. Push data into `chunks` array during `onmessage`.'
+      startLine: 61,
+      instruction: 'Initialize `new MediaRecorder(stream)`. Push data into `chunks` during `ondataavailable`.'
     }
   ]
 };

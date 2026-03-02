@@ -9,6 +9,6 @@ export default {
     '**drop**: The terminal event where the **e.dataTransfer** object becomes populated with local files.',
     '**e.dataTransfer.files**: Access binary content as a standard File list.',
     '**file.text()**: Asynchronously translating raw bytes into a readable string format.',
-    '**navigator.clipboard.readText()**: Programmatic access to the system-level clipboard for fast "Vortex Code" pasting.'
+    '**JSON.parse(text)**: Turning imported session payloads into structured objects you can inspect and visualize.'
   ]
 };

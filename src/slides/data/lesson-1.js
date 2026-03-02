@@ -2,7 +2,7 @@ export default {
   id: 'lesson-1',
   type: 'bullets',
   kicker: 'Lesson 1',
-  title: 'Audio Signal & Canvas Canvas',
+  title: 'Audio Signal & Canvas',
   subtitle: 'The Core of Real-Time Interaction',
   points: [
     '**AudioContext**: The centralized engine for all web audio node routing.',

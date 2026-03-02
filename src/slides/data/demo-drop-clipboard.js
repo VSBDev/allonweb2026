@@ -346,19 +346,19 @@ fileInput.onchange = () => { if (fileInput.files[0]) analyzeFile(fileInput.files
     {
       title: 'Intercepting Files',
       lang: 'js',
-      startLine: 327,
+      startLine: 42,
       instruction: '1. `e.preventDefault()`. 2. `const file = e.dataTransfer.files[0]`. 3. Call `analyzeFile(file)`.'
     },
     {
       title: 'Reading Text',
       lang: 'js',
-      startLine: 304,
+      startLine: 10,
       instruction: 'Use `await file.text()` to get the raw JSON string. Use `JSON.parse(text)` to turn it into an object.'
     },
     {
       title: 'Traversing Data',
       lang: 'js',
-      startLine: 312,
+      startLine: 19,
       instruction: 'Get notes count: `data.sequence.filter(e => e.type === "on").length`. Duration: `data.sequence[data.sequence.length-1].time`.'
     }
   ]

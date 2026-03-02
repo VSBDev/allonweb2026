@@ -349,7 +349,7 @@ function logger(msg) { log.textContent = '> ' + msg; }
 async function syncToOPFS() {
   const bytes = db.export(); // Binary array of the SQLite DB
   // 1. Get the root directory handle from navigator.storage
-  // 2. Get a file handle for "vortex.db" (use {create: true})
+  // 2. Get a file handle for "vortex-playlist.sqlite" (use {create: true})
   // 3. Create a writable stream and write the 'bytes' buffer
   // TODO: Sync database bytes to the Origin Private File System
 }
@@ -368,21 +368,36 @@ async function indexSession() {
   logger('Track saved to OPFS database: ' + name);
 }
 
+async function readFromOPFS() {
+  try {
+    const root = await navigator.storage.getDirectory();
+    const handle = await root.getFileHandle(dbFile);
+    const file = await handle.getFile();
+    return new Uint8Array(await file.arrayBuffer());
+  } catch {
+    return null;
+  }
+}
+
 // --- 2. BOILERPLATE: Database Logic ---
 async function initDb() {
   // Load SQL.js library
   if (!window.initSqlJs) {
      const s = document.createElement('script');
      s.src = 'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js';
-     await new Promise(r => s.onload = r);
-     document.head.appendChild(s);
+     await new Promise((resolve, reject) => {
+       s.onload = resolve;
+       s.onerror = reject;
+       document.head.appendChild(s);
+     });
   }
   const SQL = await window.initSqlJs({ locateFile: f => 'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/' + f });
   
-  db = new SQL.Database(); // In-memory for now
+  const bytes = await readFromOPFS();
+  db = bytes ? new SQL.Database(bytes) : new SQL.Database();
   db.run('CREATE TABLE IF NOT EXISTS tracks (id INTEGER PRIMARY KEY, name TEXT, artist TEXT, genre TEXT, ts INTEGER)');
   renderList();
-  logger('Database Ready');
+  logger(bytes ? 'Database restored from OPFS' : 'Database Ready');
 }
 
 function renderList() {
@@ -403,14 +418,14 @@ initDb();`
     {
       title: 'SQL Insertion',
       lang: 'js',
-      startLine: 360,
+      startLine: 29,
       instruction: 'Use `db.run(query, [params])`. Example: `INSERT INTO tracks (name, artist, genre, ts) VALUES (?, ?, ?, ?)`.'
     },
     {
       title: 'OPFS Hook',
       lang: 'js',
-      startLine: 350,
-      instruction: '1. `navigator.storage.getDirectory()`. 2. `root.getFileHandle("vortex.db", {create:true})`. 3. Create writable and write `db.export()`.'
+      startLine: 19,
+      instruction: '1. `navigator.storage.getDirectory()`. 2. `root.getFileHandle("vortex-playlist.sqlite", {create:true})`. 3. Create writable and write `db.export()`.'
     }
   ]
 };
